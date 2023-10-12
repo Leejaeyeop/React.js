@@ -5,8 +5,14 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "./store/slice/counterSlice";
 import { Link } from "react-router-dom";
+import useInputs from "./hooks/userInputs";
 
 function App() {
+    const [{ username, email }, onChange, reset] = useInputs({
+        username: "name",
+        email: "email",
+    });
+
     const count = useSelector((state) => state.counter.value);
     const dispatch = useDispatch();
     return (
@@ -17,17 +23,6 @@ function App() {
                     className="App-logo"
                     alt="logo"
                 />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
                 <main>
                     <section>
                         <button onClick={() => dispatch(decrement())}>1씩 감소</button>
@@ -37,6 +32,14 @@ function App() {
                     <section>
                         <Link to="/about"> About </Link>
                     </section>
+                    <section>
+                        <input
+                            type="text"
+                            onChange={(e) => onChange(e)}
+                        ></input>
+                        {username}
+                    </section>
+                    <section>{email}</section>
                 </main>
             </header>
         </div>
