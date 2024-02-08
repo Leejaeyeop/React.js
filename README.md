@@ -1,3 +1,3 @@
 # React.js
 
-### training repository for React.js
+### Training repository for React.js
